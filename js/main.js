@@ -4,6 +4,51 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  // ---- Cookie consent (POPIA — non-essential cookies only after opt-in) ----
+  initCookieConsent();
+
+  function initCookieConsent() {
+    try {
+      if (localStorage.getItem('trustco_cookie_consent') === 'accepted') return;
+    } catch (e) {
+      return;
+    }
+
+    const banner = document.createElement('div');
+    banner.className = 'cookie-consent';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-live', 'polite');
+    banner.setAttribute('aria-label', 'Cookie consent');
+    banner.innerHTML = `
+      <div class="cookie-consent-inner container">
+        <p>We use cookies only where necessary for the site to function. Optional analytics or tracking cookies are not placed unless you accept. See our <a href="/privacy">Privacy Policy</a> for how we process personal information under POPIA.</p>
+        <div class="cookie-consent-actions">
+          <button type="button" class="btn btn-primary btn-accept-cookies">Accept optional cookies</button>
+          <button type="button" class="btn btn-outline" style="border-color:rgba(255,255,255,0.4);color:rgba(255,255,255,0.9);">Essential only</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(banner);
+
+    const dismiss = function (value) {
+      try {
+        localStorage.setItem('trustco_cookie_consent', value);
+      } catch (err) { /* ignore */ }
+      banner.classList.add('is-dismissed');
+      setTimeout(function () {
+        if (banner.parentNode) banner.parentNode.removeChild(banner);
+      }, 400);
+    };
+
+    banner.querySelector('.btn-accept-cookies').addEventListener('click', function () {
+      dismiss('accepted');
+    });
+    banner.querySelectorAll('.cookie-consent-actions .btn')[1].addEventListener('click', function () {
+      dismiss('essential');
+    });
+  }
+
   // ---- Sticky Header ----
   const header = document.querySelector('.site-header');
   if (header) {
@@ -64,15 +109,24 @@ document.addEventListener('DOMContentLoaded', function () {
   // ---- Scroll Animations ----
   const animateEls = document.querySelectorAll('.fade-up, .fade-in');
   if (animateEls.length) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      animateEls.forEach(function (el) {
+        el.classList.add('visible');
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    animateEls.forEach(el => observer.observe(el));
+    } else {
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      animateEls.forEach(function (el) {
+        observer.observe(el);
+      });
+    }
   }
 
   // ---- Contact Form Handling ----
@@ -128,20 +182,25 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 5000);
   }
 
-  // ---- Active Nav Link ----
+  // ---- Active Nav Link (matches clean URLs e.g. /about) ----
   const currentPage = document.body.getAttribute('data-page');
-  const navLinksAll = document.querySelectorAll('.nav-links a');
-  navLinksAll.forEach(link => {
+  const pathMap = {
+    'home': '/',
+    'about': '/about',
+    'liquidation': '/liquidation',
+    'trusts': '/trusts',
+    'rescue': '/business-rescue',
+    'contact': '/contact',
+    'services': '/services',
+    'insights': '/insights',
+    'privacy': '/privacy',
+    'terms': '/terms',
+    'paia': '/paia'
+  };
+  const currentPath = currentPage ? pathMap[currentPage] : null;
+  document.querySelectorAll('.nav-links a').forEach(function (link) {
     const href = link.getAttribute('href');
-    const pageMap = {
-      'home': 'index.html',
-      'about': 'about.html',
-      'liquidation': 'liquidation.html',
-      'trusts': 'trusts.html',
-      'rescue': 'business-rescue.html',
-      'contact': 'contact.html'
-    };
-    if (currentPage && pageMap[currentPage] === href) {
+    if (currentPath && href === currentPath) {
       link.classList.add('active');
     }
   });

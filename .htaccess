@@ -1,0 +1,30 @@
+RewriteEngine On
+
+# Redirect direct server path to canonical domain.
+# Example: http://169.239.217.50/~trustco/anything -> https://trustco.co.za/anything
+RewriteCond %{HTTP_HOST} ^169\.239\.217\.50$ [NC]
+RewriteRule ^~trustco/?(.*)$ https://trustco.co.za/$1 [R=301,L,NE]
+
+# Redirect any www host to non-www over HTTPS.
+RewriteCond %{HTTP_HOST} ^www\.trustco\.co\.za$ [NC]
+RewriteRule ^ https://trustco.co.za%{REQUEST_URI} [R=301,L,NE]
+
+# Redirect HTTP to HTTPS on canonical host.
+RewriteCond %{HTTP_HOST} ^trustco\.co\.za$ [NC]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://trustco.co.za%{REQUEST_URI} [R=301,L,NE]
+
+# Canonicalize .html URLs to clean URLs.
+# Examples:
+# /about.html -> /about
+# /index.html -> /
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^(.+)\.html$ /$1 [R=301,L,NE]
+RewriteRule ^index$ / [R=301,L,NE]
+
+# Serve folder index.html for extensionless URLs (matches Live Server layout).
+# Example: /about -> /about/index.html (internally)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+RewriteRule ^(.+?)/?$ $1/index.html [L]
