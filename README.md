@@ -1,7 +1,7 @@
-# Trust Co (Pty) Ltd — Website
+# Trust Co — Website
 
 ## Project Overview
-A premium, multi-page static website for **Trust Co (Pty) Ltd**, a Gauteng-based legal firm specialising in Liquidation, Trusts, and Business Rescue. The website is designed to feel authoritative, trustworthy, and conversion-focused, targeting directors, creditors, individuals, and investors seeking expert legal guidance.
+A premium, multi-page static website for **Trust Co**, a Gauteng-based legal firm specialising in Liquidation, Trusts, and Business Rescue. The website is designed to feel authoritative, trustworthy, and conversion-focused, targeting directors, creditors, individuals, and investors seeking expert legal guidance.
 
 ---
 
@@ -134,4 +134,4 @@ The following items need to be replaced with real business information:
 
 ---
 
-*© 2025 Trust Co (Pty) Ltd — All rights reserved.*
+*© 2025 Trust Co — All rights reserved.*

@@ -1,4 +1,4 @@
-# Trust Co (Pty) Ltd — Business overview
+# Trust Co — Business overview
 
 **What:** Gauteng-based legal firm focused on **insolvency, restructuring, and trust law** — combining technical legal work with commercial judgment.
 
