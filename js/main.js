@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     banner.setAttribute('aria-label', 'Cookie consent');
     banner.innerHTML = `
       <div class="cookie-consent-inner container">
-        <p>We use cookies only where necessary for the site to function. Optional analytics or tracking cookies are not placed unless you accept. See our <a href="/privacy">Privacy Policy</a> for how we process personal information under POPIA.</p>
+        <p>We use cookies only where necessary for the site to function. Optional analytics or tracking cookies are not placed unless you accept. See our <a href="privacy/">Privacy Policy</a> for how we process personal information under POPIA.</p>
         <div class="cookie-consent-actions">
           <button type="button" class="btn btn-primary btn-accept-cookies">Accept optional cookies</button>
           <button type="button" class="btn btn-outline" style="border-color:rgba(255,255,255,0.4);color:rgba(255,255,255,0.9);">Essential only</button>
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
       '<div class="form-group"><label for="cbMessage">Brief note *</label><textarea id="cbMessage" name="message" class="form-control" rows="3" required placeholder="Best times to call, or a short outline…"></textarea></div>' +
       '<div class="form-consent" style="margin-bottom:1rem;"><label style="display:flex;align-items:flex-start;gap:0.35rem;cursor:pointer;font-size:0.82rem;color:var(--grey);line-height:1.45;">' +
       '<input type="checkbox" name="consent" required style="margin-top:3px;flex-shrink:0;accent-color:var(--teal);" />' +
-      '<span>I agree per the <a href="/privacy" style="color:var(--teal);font-weight:600;">Privacy Policy</a>. *</span></label></div>' +
+      '<span>I agree per the <a href="privacy/" style="color:var(--teal);font-weight:600;">Privacy Policy</a>. *</span></label></div>' +
       '<button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send callback request</button>' +
       '</form></div>';
 
@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', function () {
       primaryHref = '#contactForm';
       primaryLabel = 'Open the form';
     } else {
-      primaryHref = '/contact#contactForm';
+      primaryHref = 'contact/#contactForm';
       primaryLabel = 'Get in touch';
     }
 
@@ -427,21 +427,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
   initWhatsAppFloat();
 
-  // ---- Active Nav Link (matches clean URLs e.g. /about) ----
+  // ---- Active Nav Link (href values match HTML; works on GitHub Pages subpaths) ----
   const currentPage = document.body.getAttribute('data-page');
   const pathMap = {
-    'home': '/',
-    'about': '/about',
-    'liquidation': '/liquidation',
-    'trusts': '/trusts',
-    'rescue': '/business-rescue',
-    'contact': '/contact',
-    'services': '/services',
-    'insights': '/insights',
-    'faq': '/faq',
-    'privacy': '/privacy',
-    'terms': '/terms',
-    'paia': '/paia'
+    'home': './',
+    'about': 'about/',
+    'liquidation': 'liquidation/',
+    'trusts': 'trusts/',
+    'rescue': 'business-rescue/',
+    'contact': 'contact/',
+    'services': 'services/',
+    'insights': 'insights/',
+    'faq': 'faq/',
+    'privacy': 'privacy/',
+    'terms': 'terms/',
+    'paia': 'paia/'
   };
   const currentPath = currentPage ? pathMap[currentPage] : null;
   document.querySelectorAll('.nav-links a').forEach(function (link) {

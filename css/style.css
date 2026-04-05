@@ -473,10 +473,10 @@ body[data-page="services"] .nav-dropdown-trigger::after {
   width: calc(100% - 1.8rem);
 }
 
-body[data-page="services"] .nav-dropdown-menu a[href="/services"],
-body[data-page="liquidation"] .nav-dropdown-menu a[href="/liquidation"],
-body[data-page="rescue"] .nav-dropdown-menu a[href="/business-rescue"],
-body[data-page="trusts"] .nav-dropdown-menu a[href="/trusts"] {
+body[data-page="services"] .nav-dropdown-menu a[href="services/"],
+body[data-page="liquidation"] .nav-dropdown-menu a[href="liquidation/"],
+body[data-page="rescue"] .nav-dropdown-menu a[href="business-rescue/"],
+body[data-page="trusts"] .nav-dropdown-menu a[href="trusts/"] {
   color: var(--accent);
   background: rgba(59, 130, 246, 0.08);
 }
@@ -1975,32 +1975,34 @@ select.form-control {
   }
 }
 
-/* ---- Page Active States ---- */
-body[data-page="home"] a[href="/"],
-body[data-page="about"] a[href="/about"],
-body[data-page="liquidation"] a[href="/liquidation"],
-body[data-page="trusts"] a[href="/trusts"],
-body[data-page="rescue"] a[href="/business-rescue"],
-body[data-page="contact"] a[href="/contact"],
-body[data-page="services"] a[href="/services"],
-body[data-page="insights"] a[href="/insights"],
-body[data-page="privacy"] a[href="/privacy"],
-body[data-page="terms"] a[href="/terms"],
-body[data-page="paia"] a[href="/paia"] {
+/* ---- Page Active States (href values match HTML; GitHub Pages–safe paths) ---- */
+body[data-page="home"] a[href="./"],
+body[data-page="about"] a[href="about/"],
+body[data-page="liquidation"] a[href="liquidation/"],
+body[data-page="trusts"] a[href="trusts/"],
+body[data-page="rescue"] a[href="business-rescue/"],
+body[data-page="contact"] a[href="contact/"],
+body[data-page="services"] a[href="services/"],
+body[data-page="insights"] a[href="insights/"],
+body[data-page="faq"] a[href="faq/"],
+body[data-page="privacy"] a[href="privacy/"],
+body[data-page="terms"] a[href="terms/"],
+body[data-page="paia"] a[href="paia/"] {
   color: var(--white) !important;
 }
 
-body[data-page="home"] a[href="/"]::after,
-body[data-page="about"] a[href="/about"]::after,
-body[data-page="liquidation"] a[href="/liquidation"]::after,
-body[data-page="trusts"] a[href="/trusts"]::after,
-body[data-page="rescue"] a[href="/business-rescue"]::after,
-body[data-page="contact"] a[href="/contact"]::after,
-body[data-page="services"] a[href="/services"]::after,
-body[data-page="insights"] a[href="/insights"]::after,
-body[data-page="privacy"] a[href="/privacy"]::after,
-body[data-page="terms"] a[href="/terms"]::after,
-body[data-page="paia"] a[href="/paia"]::after {
+body[data-page="home"] a[href="./"]::after,
+body[data-page="about"] a[href="about/"]::after,
+body[data-page="liquidation"] a[href="liquidation/"]::after,
+body[data-page="trusts"] a[href="trusts/"]::after,
+body[data-page="rescue"] a[href="business-rescue/"]::after,
+body[data-page="contact"] a[href="contact/"]::after,
+body[data-page="services"] a[href="services/"]::after,
+body[data-page="insights"] a[href="insights/"]::after,
+body[data-page="faq"] a[href="faq/"]::after,
+body[data-page="privacy"] a[href="privacy/"]::after,
+body[data-page="terms"] a[href="terms/"]::after,
+body[data-page="paia"] a[href="paia/"]::after {
   width: calc(100% - 1.8rem);
 }
 
